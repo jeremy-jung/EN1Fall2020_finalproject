@@ -62,8 +62,10 @@ function cloud_update_airtable(key, newValue) {
 
 // AIRTABLE CLOUD GET: get the value for a particular key
 function cloud_get_airtable(key) {
+  let value = cloud_connection.getValue(key);
   // SHOULD PROBABLY DO MORE CHECKING HERE
-  return cloud_connection.getValue(key);
+  console.log("got value: ", value);
+  return value;
 }
 
 // SYSTEMLINK CLOUD UPDATE: set the key to value
@@ -322,6 +324,7 @@ function interactiveHTML() {
           // download and run program
           var prog_name = "prog";
           var new_code = search_and_replace_params(params["cloud_code"], params);
+          // var new_code = params["cloud_code"];
 					mySPIKE.stopCurrentProgram();
           mySPIKE.writeProgram(prog_name, new_code, parseInt(params["cloud_action_val"]),
             function() { mySPIKE.executeProgram(parseInt(params["cloud_action_val"])); }
